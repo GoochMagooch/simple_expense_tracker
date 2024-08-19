@@ -20,3 +20,14 @@ def calculate_expenses():
 
 def exit_program():
     exit
+
+if input == 1:
+    add_expense()
+elif input == 2:
+    view_expenses()
+elif input == 3:
+    calculate_expenses()
+elif input == 4:
+    exit_program()
+else:
+    print("Please enter a number from 1 to 4...")
