@@ -8,6 +8,7 @@ print(input("Please choose an option (1-4): "))
 expenses = []
 
 def add_expense():
+    print(input("Enter your expense: "))
     expenses.append(input.value)
 
 def view_expenses():
