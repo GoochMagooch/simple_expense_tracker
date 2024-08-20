@@ -3,7 +3,7 @@ print("1. Add an Expense")
 print("2. View Expenses")
 print("3. Calculate Total Expenses")
 print("4. Exit\n")
-choice = int(input("Please choose an option (1-4): "))
+choice = int(input("Please choose an option (1 - 4): "))
 expenses = []
 
 def add_expense():
