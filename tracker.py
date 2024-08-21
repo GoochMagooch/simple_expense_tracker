@@ -6,9 +6,10 @@ print("4. Exit\n")
 choice = int(input("Please choose an option (1 - 4): "))
 expenses = []
 
-def add_expense():
-    my_expense = int(input("Enter your expense: "))
-    expenses.append(my_expense)
+def add_expense(description, amount):
+    description = input("Describe your expense: ")
+    amount = int(input("Enter your expense: "))
+    expenses.append(f"Expense: {description}, Amount: {amount}")
 
 def view_expenses():
     print(expenses)
