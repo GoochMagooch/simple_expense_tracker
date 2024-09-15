@@ -34,5 +34,3 @@ elif choice == 4:
     exit_program()
 else:
     print("Please enter a number from 1 to 4...")
-
-# Test comment to send change to git from nvim
