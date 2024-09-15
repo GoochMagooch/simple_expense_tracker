@@ -25,7 +25,8 @@ def exit_program():
     exit
 
 if choice == 1:
-    add_expense()
+    while choice != 4:
+        add_expense()
 elif choice == 2:
     view_expenses()
 elif choice == 3:
