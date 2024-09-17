@@ -24,14 +24,14 @@ def exit_program():
     print("Exiting Expense Tracker...Goodbye")
     exit
 
-if choice == 1:
-    while choice != 4:
+while True:
+    if choice == 1:
         add_expense()
-elif choice == 2:
-    view_expenses()
-elif choice == 3:
-    calculate_expenses()
-elif choice == 4:
-    exit_program()
-else:
-    print("Please enter a number from 1 to 4...")
+    elif choice == 2:
+        view_expenses()
+    elif choice == 3:
+        calculate_expenses()
+    elif choice == 4:
+        exit_program()
+    else:
+        print("Please enter a number from 1 to 4...")
