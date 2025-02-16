@@ -1,15 +1,12 @@
-print("Welcome to the Simple Expense Tracker\n")
-print("1. Add an Expense")
-print("2. View Expenses")
-print("3. Calculate Total Expenses")
-print("4. Exit\n")
-choice = int(input("Please choose an option (1 - 4): "))
-expenses = []
+import os
 
-def add_expense(description, amount):
+def clear_screen():
+  os.system('cls' if os.name == 'nt' else 'clear')
+
+def add_expense():
     description = input("Describe your expense: ")
     amount = int(input("Enter your expense: "))
-    expenses.append(f"Expense: {description}, Amount: {amount}")
+    print(f"Expense: {description}, Amount: {amount}")
 
 def view_expenses():
     print(expenses)
@@ -25,8 +22,17 @@ def exit_program():
     exit
 
 while True:
+    print("Welcome to the Simple Expense Tracker\n")
+    print("1. Add an Expense")
+    print("2. View Expenses")
+    print("3. Calculate Total Expenses")
+    print("4. Exit\n")
+    choice = int(input("Please choose an option (1 - 4): "))
+
     if choice == 1:
         add_expense()
+        clear_screen() # Clears screen after a choice is made
+        # function to reinitialize menu
     elif choice == 2:
         view_expenses()
     elif choice == 3:
