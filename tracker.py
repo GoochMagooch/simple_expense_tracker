@@ -1,7 +1,9 @@
 import os
 
+expenses = []
+
 def clear_screen():
-  os.system('cls' if os.name == 'nt' else 'clear')
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def add_expense():
     description = input("Describe your expense: ")
@@ -19,25 +21,36 @@ def calculate_expenses():
 
 def exit_program():
     print("Exiting Expense Tracker...Goodbye")
-    exit
 
 while True:
+
     print("Welcome to the Simple Expense Tracker\n")
     print("1. Add an Expense")
     print("2. View Expenses")
     print("3. Calculate Total Expenses")
     print("4. Exit\n")
-    choice = int(input("Please choose an option (1 - 4): "))
+    choice = input("Please choose an option (1 - 4) or \"exit\": ")
 
-    if choice == 1:
-        add_expense()
-        clear_screen() # Clears screen after a choice is made
-        # function to reinitialize menu
-    elif choice == 2:
-        view_expenses()
-    elif choice == 3:
-        calculate_expenses()
-    elif choice == 4:
+    if choice == "exit":
+        clear_screen()
         exit_program()
+        exit
     else:
-        print("Please enter a number from 1 to 4...")
+        int_choice = int(choice)
+        try:
+            if int_choice == 1:
+                add_expense()
+                clear_screen() # Clears screen after a choice is made
+                # function to reinitialize menu
+            elif int_choice == 2:
+                view_expenses()
+            elif int_choice == 3:
+                calculate_expenses()
+            elif int_choice == 4:
+                clear_screen()
+                exit_program()
+                exit
+            else:
+                print("Please enter a number from 1 to 4 or \"exit\"")
+        except ValueError:
+            print("Please enter a number from 1 to 4 or \"exit\"")
