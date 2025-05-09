@@ -36,8 +36,8 @@ while True:
         exit_program()
         exit
     else:
-        int_choice = int(choice)
         try:
+            int_choice = int(choice)
             if int_choice == 1:
                 add_expense()
                 clear_screen() # Clears screen after a choice is made
