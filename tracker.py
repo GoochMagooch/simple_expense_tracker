@@ -40,8 +40,7 @@ while True:
             int_choice = int(choice)
             if int_choice == 1:
                 add_expense()
-                clear_screen() # Clears screen after a choice is made
-                # function to reinitialize menu
+                clear_screen()
             elif int_choice == 2:
                 view_expenses()
             elif int_choice == 3:
