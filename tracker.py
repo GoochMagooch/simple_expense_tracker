@@ -34,7 +34,7 @@ while True:
     if choice == "exit":
         clear_screen()
         exit_program()
-        exit
+        exit()
     else:
         try:
             int_choice = int(choice)
