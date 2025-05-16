@@ -5,30 +5,43 @@ expenses = {} # stores expenses
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+# I want the amount input to persist until either an int or float are entered
 def add_expense():
     my_expense = input("Describe your expense: ")
-    amount = float(input("Enter your expense: "))
-    if my_expense in expenses:
-        expenses[my_expense] += amount
-    else:
-        expenses[my_expense] = amount
-    print(f"Expense added to expense list!")
+    while True:
+        amount = float(input("Enter the price of your expense: "))
+        if not type(amount) == float or not type(amount) == int:
+            pass
+        else:
+            if my_expense in expenses:
+                expenses[my_expense] += amount
+                exit()
+            else:
+                expenses[my_expense] = amount
+                exit()
+        print(f"Expense added to expense list!")
 
 def view_expenses():
-    for key,value in expenses.items():
-        if len(str(value)[str(value).index(".")+1:]) == 1:
-            print(f"{key}: ${value:.2f}")
-        else:
-            print(f"{key}: ${int(value)}")
+    if len(expenses) == 0:
+        print("There are no expenses in your tracker! Add some by pressing 1")
+    else:
+        for key,value in expenses.items():
+            if len(str(value)[str(value).index(".")+1:]) == 1:
+                print(f"{key}: ${value:.2f}")
+            else:
+                print(f"{key}: ${int(value)}")
 
 def calculate_expenses():
     total = 0
-    for expense in expenses.values():
-        total += expense
-    if len(str(total)[str(total).index(".")+1:]) == 1:
-        print(f"The total of your expenses comes out to: ${total:.2f}")
+    if len(expenses) == 0:
+        print("There are no expenses in your tracker! Add some by pressing 1")
     else:
-        print(f"The total of your expenses comes out to: ${int(total)}")
+        for expense in expenses.values():
+            total += expense
+        if len(str(total)[str(total).index(".")+1:]) == 1:
+            print(f"The total of your expenses comes out to: ${total:.2f}")
+        else:
+            print(f"The total of your expenses comes out to: ${int(total)}")
 
 def exit_program():
     print("Exiting Expense Tracker...Goodbye")
