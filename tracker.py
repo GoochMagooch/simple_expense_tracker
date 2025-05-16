@@ -5,21 +5,26 @@ expenses = {} # stores expenses
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-# I want the amount input to persist until either an int or float are entered
 def add_expense():
+    func_persist = True
     my_expense = input("Describe your expense: ")
-    while True:
-        amount = float(input("Enter the price of your expense: "))
-        if not type(amount) == float or not type(amount) == int:
-            pass
-        else:
+    while func_persist:
+        try:
+            amount = float(input("Enter the price of your expense: "))
             if my_expense in expenses:
                 expenses[my_expense] += amount
-                exit()
+                clear_screen()
+                print(f"Expense added to expense list!")
+                func_persist = False
             else:
                 expenses[my_expense] = amount
-                exit()
-        print(f"Expense added to expense list!")
+                clear_screen()
+                print(f"Expense added to expense list!")
+                func_persist = False
+        except ValueError:
+            clear_screen()
+            print("Error: Price must be a whole number or decimal")
+            pass
 
 def view_expenses():
     if len(expenses) == 0:
