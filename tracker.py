@@ -32,7 +32,9 @@ def view_expenses():
         for key,value in expenses.items():
             if len(str(value)[str(value).index(".")+1:]) == 1:
                 print(f"{key}: ${value:.2f}")
-            else:
+            elif len(str(value)[str(value).index(".")+1:]) == 2:
+                print(f"{key}: ${value}")
+            else:                
                 print(f"{key}: ${int(value)}")
 
 def calculate_expenses():
@@ -44,6 +46,8 @@ def calculate_expenses():
             total += expense
         if len(str(total)[str(total).index(".")+1:]) == 1:
             print(f"The total of your expenses comes out to: ${total:.2f}")
+        elif len(str(total)[str(total).index(".")+1:]) == 2:
+            print(f"The total of your expenses comes out to: ${total}")
         else:
             print(f"The total of your expenses comes out to: ${int(total)}")
 
