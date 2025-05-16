@@ -6,21 +6,20 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def add_expense():
-    func_persist = True
     my_expense = input("Describe your expense: ")
-    while func_persist:
+    while True:
         try:
             amount = float(input("Enter the price of your expense: "))
             if my_expense in expenses:
                 expenses[my_expense] += amount
                 clear_screen()
                 print(f"Expense added to expense list!")
-                func_persist = False
+                break
             else:
                 expenses[my_expense] = amount
                 clear_screen()
                 print(f"Expense added to expense list!")
-                func_persist = False
+                break
         except ValueError:
             clear_screen()
             print("Error: Price must be a whole number or decimal")
