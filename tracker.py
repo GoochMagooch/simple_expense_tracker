@@ -30,7 +30,9 @@ def view_expenses():
         print("There are no expenses in your tracker! Add some by pressing 1")
     else:
         for key,value in expenses.items():
-            if len(str(value)[str(value).index(".")+1:]) == 1:
+            if len(str(value)[str(value).index(".")+1:]) == 1 and str(value)[str(value).index(".")+1:] == "0":
+                print(f"{key}: ${int(value)}")
+            elif len(str(value)[str(value).index(".")+1:]) == 1:
                 print(f"{key}: ${value:.2f}")
             elif len(str(value)[str(value).index(".")+1:]) == 2:
                 print(f"{key}: ${value}")
@@ -44,7 +46,10 @@ def calculate_expenses():
     else:
         for expense in expenses.values():
             total += expense
-        if len(str(total)[str(total).index(".")+1:]) == 1:
+
+        if len(str(total)[str(total).index(".")+1:]) == 1 and str(total)[str(total).index(".")+1:] == "0":
+            print(f"The total of your expenses comes out to: ${int(total)}")
+        elif len(str(total)[str(total).index(".")+1:]) == 1:
             print(f"The total of your expenses comes out to: ${total:.2f}")
         elif len(str(total)[str(total).index(".")+1:]) == 2:
             print(f"The total of your expenses comes out to: ${total}")
@@ -98,4 +103,5 @@ while True:
                 pass
         except ValueError:
             clear_screen()
+            print("Choice not found...")
             pass
