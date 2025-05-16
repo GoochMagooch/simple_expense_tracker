@@ -94,6 +94,7 @@ while True:
                 calculate_expenses()
             else:
                 clear_screen()
+                print("Choice not found...")
                 pass
         except ValueError:
             clear_screen()
