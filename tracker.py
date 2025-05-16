@@ -1,46 +1,61 @@
 import os
 
-expenses = []
+expenses = {} # stores expenses
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def add_expense():
-    description = input("Describe your expense: ")
+    my_expense = input("Describe your expense: ")
     amount = int(input("Enter your expense: "))
-    print(f"Expense: {description}, Amount: {amount}")
+    expenses[my_expense] = amount
+    print(f"Expense added to expense list!")
 
 def view_expenses():
-    print(expenses)
+    for key,value in expenses.items():
+        print(f"{key}: ${value}")
 
 def calculate_expenses():
     total = 0
-    for expense in expenses:
+    for expense in expenses.values():
         total += expense
-    print(f"The total of your expenses comes out to: {total}")
+    print(f"The total of your expenses comes out to: ${total}")
 
 def exit_program():
     print("Exiting Expense Tracker...Goodbye")
+    exit()
+
+print("Welcome to the Simple Expense Tracker\n")
+print("1. Add an Expense")
+print("2. View Expenses")
+print("3. Calculate Total Expenses")
+print("\"Menu\" to bring up menu")
+print("\"Exit\" to exit\n")
 
 while True:
+    choice = input("Please choose an option (1 - 3), \"menu\", or \"exit\": ")
 
-    print("Welcome to the Simple Expense Tracker\n")
-    print("1. Add an Expense")
-    print("2. View Expenses")
-    print("3. Calculate Total Expenses")
-    print("4. Exit\n")
-    choice = input("Please choose an option (1 - 4) or \"exit\": ")
-
-    if choice == "exit":
+    if choice.lower() == "exit":
+        print("Are you sure you want to exit?")
+        exit_choice = input("Press \"Y\" or \"N\": ")
+        if exit_choice.lower() == "y":
+            exit_program()
+        else:
+            clear_screen()
+            pass
+    elif choice.lower() == "menu":
         clear_screen()
-        exit_program()
-        exit()
+        print("1. Add an Expense")
+        print("2. View Expenses")
+        print("3. Calculate Total Expenses")
+        print("\"Menu\" to bring up menu")
+        print("\"Exit\" to exit\n")
     else:
         try:
             int_choice = int(choice)
             if int_choice == 1:
-                add_expense()
                 clear_screen()
+                add_expense()
             elif int_choice == 2:
                 view_expenses()
             elif int_choice == 3:
@@ -50,6 +65,8 @@ while True:
                 exit_program()
                 exit
             else:
-                print("Please enter a number from 1 to 4 or \"exit\"")
+                clear_screen()
+                pass
         except ValueError:
-            print("Please enter a number from 1 to 4 or \"exit\"")
+            clear_screen()
+            pass
