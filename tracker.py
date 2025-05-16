@@ -7,7 +7,7 @@ def clear_screen():
 
 def add_expense():
     my_expense = input("Describe your expense: ")
-    amount = int(input("Enter your expense: "))
+    amount = float(input("Enter your expense: "))
     if my_expense in expenses:
         expenses[my_expense] += amount
     else:
@@ -16,13 +16,19 @@ def add_expense():
 
 def view_expenses():
     for key,value in expenses.items():
-        print(f"{key}: ${value}")
+        if len(str(value)[str(value).index(".")+1:]) == 1:
+            print(f"{key}: ${value:.2f}")
+        else:
+            print(f"{key}: ${int(value)}")
 
 def calculate_expenses():
     total = 0
     for expense in expenses.values():
         total += expense
-    print(f"The total of your expenses comes out to: ${total}")
+    if len(str(total)[str(total).index(".")+1:]) == 1:
+        print(f"The total of your expenses comes out to: ${total:.2f}")
+    else:
+        print(f"The total of your expenses comes out to: ${int(total)}")
 
 def exit_program():
     print("Exiting Expense Tracker...Goodbye")
