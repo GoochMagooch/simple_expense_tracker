@@ -42,3 +42,39 @@ Expected Outcome:
 This challenge tests your ability to work with lists, write multiple functions, handle basic user input, and build a simple program that mimics an everyday task of tracking expenses.
 
 Product Complete ✅
+
+
+## Product Enhancement
+Hi Charles,
+
+Nice work on getting the expense tracker up and running. As a follow-up, I’d like you to implement file persistence so that expenses are saved between sessions.
+
+Objective
+Enhance the existing Simple Expense Tracker by adding the ability to save expenses to a file and load them when the program starts.
+
+Requirements
+1. Save to File
+    - Before the program exits, write the current contents of the expenses dictionary to a file.
+    - Use a simple format like CSV or plain text.
+    - One line per expense: description,amount
+
+2. Load from File
+    - When the program starts, read from the file (if it exists) and populate the expenses dictionary with its contents.
+
+3. Parameters
+    - Use built-in libraries only (open(), with, etc.).
+    - Handle invalid or malformed lines gracefully during file read.
+    - Ensure amounts are parsed as floats.
+    - File name should be something obvious like expenses.txt or expenses.csv.
+
+4. User Experience
+    - Do not prompt the user for file paths.
+    - Print a confirmation when data is loaded or saved.
+    - Don’t crash if the file doesn’t exist — start with an empty tracker.
+
+Let me know if you'd like to review any ideas before implementation.
+
+Best,
+Kali
+Team Lead, Internal Tools Development
+Systems Design Consultancy LLC
