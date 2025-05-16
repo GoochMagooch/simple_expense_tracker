@@ -3,26 +3,26 @@ You’ve been asked to build a basic expense tracker for an employee to track th
 
 Challenge Requirements:
 Data Structure:
-Create a list called expenses that will store each expense as a tuple containing the expense description (e.g., "Lunch") and the expense amount (e.g., 12.50).
+Create a list called expenses that will store each expense as a tuple containing the expense description (e.g., "Lunch") and the expense amount (e.g., 12.50). ✅
 
 Add Expense:
-Write a function add_expense(description, amount) that adds a new expense to the expenses list.
+Write a function add_expense(description, amount) that adds a new expense to the expenses list. ✅
 
 View Expenses:
-Write a function view_expenses() that prints out each expense in the list in a readable format, showing the description and amount for each expense.
+Write a function view_expenses() that prints out each expense in the list in a readable format, showing the description and amount for each expense. ✅
 
 Calculate Total Expenses:
-Write a function calculate_total() that calculates and returns the total amount spent based on the expenses stored in the list.
+Write a function calculate_total() that calculates and returns the total amount spent based on the expenses stored in the list. ✅
 
 Main Program:
 Write a simple main program that:
 
 Displays a menu with options to add an expense, view all expenses, calculate total expenses, or exit.
-Repeats until the user chooses to exit.
+Repeats until the user chooses to exit. ✅
 Additional Parameters:
-Input Validation: Ensure that the user inputs valid numerical amounts for the expenses.
-Edge Cases: Handle cases where there are no expenses to display or calculate.
-Clear Output: Ensure that expenses are displayed clearly and the total is properly formatted.
+Input Validation: Ensure that the user inputs valid numerical amounts for the expenses. ✅
+Edge Cases: Handle cases where there are no expenses to display or calculate. ✅
+Clear Output: Ensure that expenses are displayed clearly and the total is properly formatted. ✅
 
 Example Usage:
 Welcome to the Simple Expense Tracker
@@ -40,3 +40,5 @@ Option 4: Exits the program.
 
 Expected Outcome:
 This challenge tests your ability to work with lists, write multiple functions, handle basic user input, and build a simple program that mimics an everyday task of tracking expenses.
+
+Product Complete ✅
