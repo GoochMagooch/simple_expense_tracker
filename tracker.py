@@ -57,13 +57,11 @@ while True:
                 clear_screen()
                 add_expense()
             elif int_choice == 2:
+                clear_screen()
                 view_expenses()
             elif int_choice == 3:
-                calculate_expenses()
-            elif int_choice == 4:
                 clear_screen()
-                exit_program()
-                exit
+                calculate_expenses()
             else:
                 clear_screen()
                 pass
