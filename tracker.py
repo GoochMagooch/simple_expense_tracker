@@ -8,7 +8,10 @@ def clear_screen():
 def add_expense():
     my_expense = input("Describe your expense: ")
     amount = int(input("Enter your expense: "))
-    expenses[my_expense] = amount
+    if my_expense in expenses:
+        expenses[my_expense] += amount
+    else:
+        expenses[my_expense] = amount
     print(f"Expense added to expense list!")
 
 def view_expenses():
