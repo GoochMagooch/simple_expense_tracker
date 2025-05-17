@@ -1,4 +1,4 @@
-# simple_expense_tracker
+## SIMPLE EXPENSE TRACKER
 You’ve been asked to build a basic expense tracker for an employee to track their expenses. The system will allow users to add expenses, view a list of expenses, and calculate the total amount spent.
 
 Challenge Requirements:
@@ -44,7 +44,7 @@ This challenge tests your ability to work with lists, write multiple functions, 
 Product Complete ✅
 
 
-## Product Enhancement
+## PRODUCT ENHANCEMENT (FILE SAVING)
 Hi Charles,
 
 Nice work on getting the expense tracker up and running. As a follow-up, I’d like you to implement file persistence so that expenses are saved between sessions.
