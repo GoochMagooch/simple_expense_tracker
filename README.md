@@ -78,3 +78,15 @@ Best,
 Kali
 Team Lead, Internal Tools Development
 Systems Design Consultancy LLC
+
+## PYTHON METHODS TO STUDY
+- open()
+- read()
+- readline()
+- readlines()
+- write()
+- writelines()
+- close()
+- seek()
+- flush()
+- with (used with open as a context manager, not a method but very relevant)
