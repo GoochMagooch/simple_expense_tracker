@@ -24,17 +24,13 @@ def add_expenses():
 
     # Defines list of formatted expensess
     formatted_expenses = []
-    if os.path.getsize("expenses.csv") == 0:
-        print("No logged expensess! Add some!")
-    else:
-        print("YOUR EXPENSES")
-        for i in range(len(expenses)):
-            if len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 1 and str(amounts[i])[str(amounts[i]).index(".")+1:] == "0":
-                formatted_expenses.append(f"{i+1}. {expenses[i]} - ${amounts[i]:.2f}")
-            elif len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 1:
-                formatted_expenses.append(f"{i+1}. {expenses[i]} - ${amounts[i]:.2f}")
-            elif len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 2:
-                formatted_expenses.append(f"{i+1}. {expenses[i]} - ${amounts[i]}")
+    for i in range(len(expenses)):
+        if len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 1 and str(amounts[i])[str(amounts[i]).index(".")+1:] == "0":
+            formatted_expenses.append(f"{i+1}. {expenses[i]} - ${amounts[i]:.2f}")
+        elif len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 1:
+            formatted_expenses.append(f"{i+1}. {expenses[i]} - ${amounts[i]:.2f}")
+        elif len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 2:
+            formatted_expenses.append(f"{i+1}. {expenses[i]} - ${amounts[i]}")
 
     # Holds numbers to match with user input to update expenses
     num_list = []
@@ -44,13 +40,17 @@ def add_expenses():
     # Adds/updates expenses
     while True:
         clear_screen()
-        print("Enter \"Add\" - Add new expense")
-        if len(expenses) == 1:
-            print(f"Enter 1 to update {expenses[0]} expense")
+        if len(expenses) == 0:
+            print("No logged expenses! Add some!")
+            print("Enter \"Add\" - Add new expense")
         else:
-            print(f"Enter 1 - {len(expenses)} to update expense amount")
-            for i in formatted_expenses:
-                print(f"  {i}")
+            print("Enter \"Add\" - Add new expense")
+            if len(expenses) == 1:
+                print(f"Enter 1 to update {expenses[0]} expense")
+            else:
+                print(f"Enter 1 - {len(expenses)} to update expense amount")
+                for i in formatted_expenses:
+                    print(f"  {i}")
         print("Enter \"Back\" - Go back")
         exp_choice_int = input("Choose: ")
         if exp_choice_int.lower() == "back":
@@ -66,9 +66,6 @@ def add_expenses():
                     ex_amount = input("Enter expense amount or enter \"back\": ")
                     if ex_amount.lower() == "back":
                         clear_screen()
-                        print("0. Add new expenses")
-                        for i in formatted_expenses:
-                            print(i)
                         pass
                     else:
                         with open("expenses.csv", "a", newline="") as x:
@@ -160,15 +157,8 @@ while True:
     choice = input("Please choose an option (1 - 3), \"menu\", or \"exit\": ")
 
     if choice.lower() == "exit":
-        print("Are you sure you want to exit?")
-        exit_choice = input("Press \"Y\" or \"N\": ")
-        if exit_choice.lower() == "y":
-            clear_screen()
-            exit_program()
-        else:
-            clear_screen()
-            display_menu()
-            pass
+        clear_screen()
+        exit_program()
     elif choice.lower() == "menu":
         clear_screen()
         display_menu()
