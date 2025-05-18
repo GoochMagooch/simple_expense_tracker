@@ -11,9 +11,9 @@ def display_menu():
     print("\"Menu\" to bring up menu")
     print("\"Exit\" to exit\n")
 
-# Adds/updates expensess in expenses.csv
+# Adds/updates expenses in expenses.csv
 def add_expenses():
-    # Separates expensess file into expenses and amounts
+    # Separates expenses file into expenses and amounts
     with open("expenses.csv") as x:
         expenses_file = csv.reader(x, delimiter=',')
         expenses = []
@@ -36,16 +36,12 @@ def add_expenses():
             elif len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 2:
                 formatted_expenses.append(f"{i+1}. {expenses[i]} - ${amounts[i]}")
 
-    # Holds numbers to run against user choice
+    # Holds numbers to match with user input to update expenses
     num_list = []
     for i in range(len(formatted_expenses)):
         num_list.append(int(formatted_expenses[i][0]))
 
-    # Prints full add expenses menu
-    for i in formatted_expenses:
-        print(i)
-
-    # Adds/updates expensess
+    # Adds/updates expenses
     while True:
         clear_screen()
         print("Enter \"Add\" - Add new expense")
@@ -61,7 +57,7 @@ def add_expenses():
             clear_screen()
             display_menu()
             break
-        elif exp_choice_int == "0":
+        elif exp_choice_int == "add":
             while True:
                 my_expenses = input("Describe your expense or enter \"back\": ")
                 if my_expenses.lower() == "back":
@@ -107,7 +103,7 @@ def add_expenses():
                 print("Enter a number or \"back\"")
                 pass
 
-# Lists all expensess
+# Lists all expenses
 def view_expenses():
     with open("expenses.csv") as x:
         expenses_file = csv.reader(x, delimiter=',')
@@ -131,7 +127,7 @@ def view_expenses():
 
 def calculate_expenses():
     total = 0
-    # Separates expensess file into expenses and amounts
+    # Separates expenses file into expenses and amounts
     with open("expenses.csv") as x:
         expenses_file = csv.reader(x, delimiter=',')
         amounts = []
