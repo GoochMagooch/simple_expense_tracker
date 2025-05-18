@@ -44,12 +44,10 @@ def add_expense():
         exp_choice_int = input("Choose a number or \"back\": ")
         try:
             if exp_choice_int in num_list:
+                ex_amount = float(input("Enter the price of your expense: "))
                 for i in range(len(expense)):
                     if exp_choice_int == num_list[i]:
-                        ex_amount = float(input("Enter the price of your expense: "))
-                        for i in range(len(expense)):
-                            if exp_choice_int == num_list[i]:
-                                amount[i] = amount[i] + ex_amount
+                        amount[i] = amount[i] + ex_amount
                 open("expenses.csv", "w").close()
                 for i in range(len(expense)):
                     with open("expenses.csv", "a", newline="") as x:
@@ -87,7 +85,7 @@ def view_expenses():
         amount = []
         for i in expenses_file:
             expense.append(i[0])
-            amount.append(i[1])
+            amount.append(float(i[1]))
     for i in range(len(expense)):
         if len(str(amount[i])[str(amount[i]).index(".")+1:]) == 1 and str(amount[i])[str(amount[i]).index(".")+1:] == "0":
             print(f"{i+1}. {expense[i]} - ${amount[i]:.2f}")
