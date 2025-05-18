@@ -6,8 +6,8 @@ def clear_screen():
 
 def display_menu():
     print("1. Add an expenses")
-    print("2. View expensess")
-    print("3. Calculate Total expensess")
+    print("2. View expenses")
+    print("3. Calculate Total expenses")
     print("\"Menu\" to bring up menu")
     print("\"Exit\" to exit\n")
 
@@ -42,35 +42,45 @@ def add_expenses():
         num_list.append(int(formatted_expenses[i][0]))
 
     # Prints full add expenses menu
-    print("0. Add new expenses")
     for i in formatted_expenses:
         print(i)
 
     # Adds/updates expensess
     while True:
         clear_screen()
-        print("0. Add new expenses")
-        for i in formatted_expenses:
-            print(i)
-        exp_choice_int = input("Choose a number or \"back\": ")
+        print("Enter \"Add\" - Add new expense")
+        if len(expenses) == 1:
+            print(f"Enter 1 to update {expenses[0]} expense")
+        else:
+            print(f"Enter 1 - {len(expenses)} to update expense amount")
+            for i in formatted_expenses:
+                print(f"  {i}")
+        print("Enter \"Back\" - Go back")
+        exp_choice_int = input("Choose: ")
         if exp_choice_int.lower() == "back":
             clear_screen()
+            display_menu()
             break
         elif exp_choice_int == "0":
-            my_expenses = input("Describe your expense or enter \"back\": ")
-            if my_expenses.lower() == "back":
-                pass
-            else:
-                ex_amount = input("Enter expense amount or enter \"back\": ")
-                if ex_amount.lower() == "back":
-                    pass
-                else:
-                    with open("expenses.csv", "a", newline="") as x:
-                        expenses_file = csv.writer(x)
-                        expenses_file.writerow([my_expenses, float(ex_amount)])
-                    clear_screen()
-                    print(f"Expense added!")
+            while True:
+                my_expenses = input("Describe your expense or enter \"back\": ")
+                if my_expenses.lower() == "back":
                     break
+                else:
+                    ex_amount = input("Enter expense amount or enter \"back\": ")
+                    if ex_amount.lower() == "back":
+                        clear_screen()
+                        print("0. Add new expenses")
+                        for i in formatted_expenses:
+                            print(i)
+                        pass
+                    else:
+                        with open("expenses.csv", "a", newline="") as x:
+                            expenses_file = csv.writer(x)
+                            expenses_file.writerow([my_expenses, float(ex_amount)])
+                        clear_screen()
+                        print(f"Expense added!")
+                        break
         else:
             try:
                 int_choice = int(exp_choice_int)
@@ -147,9 +157,9 @@ def exit_program():
     exit()
 
 print("Welcome to the Simple expenses Tracker\n")
+display_menu()
 
 while True:
-    display_menu()
 
     choice = input("Please choose an option (1 - 3), \"menu\", or \"exit\": ")
 
@@ -161,9 +171,11 @@ while True:
             exit_program()
         else:
             clear_screen()
+            display_menu()
             pass
     elif choice.lower() == "menu":
         clear_screen()
+        display_menu()
     else:
         try:
             int_choice = int(choice)
