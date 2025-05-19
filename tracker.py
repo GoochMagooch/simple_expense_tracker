@@ -75,6 +75,7 @@ def add_expenses():
                 if len(expenses) == 0:
                     clear_screen()
                     print("ADD NEW EXPENSES HERE!\n")
+
                 # If there is one logged expense
                 elif len(expenses) == 1:
                     clear_screen()
@@ -82,6 +83,7 @@ def add_expenses():
                     print(f"Choose 1 to update expense amount")
                     for i in formatted_expenses:
                         print(f"  {i}")
+
                 # If there are multiple logged expenses
                 else:
                     clear_screen()
@@ -97,15 +99,19 @@ def add_expenses():
                 else:
                     ex_amount = input("Enter amount: ")
                     if ex_amount.lower() == "back":
-                        clear_screen()
-                        pass
+                            clear_screen()
+                            pass
                     else:
-                        with open("expenses.csv", "a", newline="") as x:
-                            expenses_file = csv.writer(x)
-                            expenses_file.writerow([my_expenses, float(ex_amount)])
-                        clear_screen()
-                        print(f"Expense added!")
-                        break
+                        try:
+                            ex_amount_float = float(ex_amount)
+                            with open("expenses.csv", "a", newline="") as x:
+                                expenses_file = csv.writer(x)
+                                expenses_file.writerow([my_expenses, ex_amount_float])
+                            clear_screen()
+                            print(f"Expense added!")
+                            break
+                        except ValueError:
+                            print("test")
         else:
             try:
                 int_choice = int(exp_choice_int)
@@ -144,6 +150,10 @@ def add_expenses():
                 clear_screen()
                 print("Enter a number or \"back\"")
                 pass
+
+# Removes Expense from expenses.csv
+def remove_expense():
+    pass
 
 # Outputs All Expenses
 def view_expenses():
@@ -223,8 +233,10 @@ while True:
             else:
                 clear_screen()
                 print("Choice not found...")
+                display_menu()
                 pass
         except ValueError:
             clear_screen()
             print("Choice not found...")
+            display_menu()
             pass
