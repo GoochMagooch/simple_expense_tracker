@@ -53,24 +53,28 @@ Objective
 Enhance the existing Simple Expense Tracker by adding the ability to save expenses to a file and load them when the program starts.
 
 Requirements
-1. Save to File
-    - Before the program exits, write the current contents of the expenses dictionary to a file.
-    - Use a simple format like CSV or plain text.
-    - One line per expense: description,amount
+1. Save to File ✅
+    - Before the program exits, write the current contents of the expenses dictionary to a file ✅
+    - Use a simple format like CSV or plain text ✅
+    - One line per expense: description,amount ✅
 
-2. Load from File
-    - When the program starts, read from the file (if it exists) and populate the expenses dictionary with its contents.
+2. Load from File ✅
+    - When the program starts, read from the file (if it exists) and populate the expenses dictionary with its contents ✅
 
-3. Parameters
-    - Use built-in libraries only (open(), with, etc.).
-    - Handle invalid or malformed lines gracefully during file read.
-    - Ensure amounts are parsed as floats.
-    - File name should be something obvious like expenses.txt or expenses.csv.
+3. Parameters ✅
+    - Use built-in libraries only (open(), with, etc.) ✅
+    - Handle invalid or malformed lines gracefully during file read ✅
+    - Ensure amounts are parsed as floats ✅
+    - File name should be something obvious like expenses.txt or expenses.csv ✅
 
-4. User Experience
-    - Do not prompt the user for file paths.
-    - Print a confirmation when data is loaded or saved.
-    - Don’t crash if the file doesn’t exist — start with an empty tracker.
+4. User Experience 
+    - Do not prompt the user for file paths ✅
+    - Print a confirmation when data is loaded or saved ✅
+    - Don’t crash if the file doesn’t exist — start with an empty tracker ✅
+    - Handle duplicates
+
+5. Touch up
+    - Add remove expense option ✅
 
 Let me know if you'd like to review any ideas before implementation.
 
@@ -78,7 +82,6 @@ Best,
 Kali
 Team Lead, Internal Tools Development
 Systems Design Consultancy LLC
-
 ## PYTHON METHODS TO STUDY
 - open()
 - read()
