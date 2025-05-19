@@ -1,9 +1,11 @@
 import os
 import csv
 
+# Clears Terminal
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+# Displays Main Menu
 def display_menu():
     print("Welcome to the Simple expenses Tracker\n")
     print("1. Manage expenses")
@@ -12,7 +14,7 @@ def display_menu():
     print("\"Menu\" to bring up menu")
     print("\"Exit\" to exit\n")
 
-# Adds/updates expenses in expenses.csv
+# Adds/Updates Expenses in expenses.csv
 def add_expenses():
     clear_screen()
     # Adds/updates expenses
@@ -37,7 +39,7 @@ def add_expenses():
             elif len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 2:
                 formatted_expenses.append(f"{i+1}. {expenses[i]} - ${amounts[i]}")
 
-        # Holds numbers to match with user input to update expenses
+        # Stores numbers to match with corresponding user expense number
         num_list = []
         for i in range(len(formatted_expenses)):
             num_list.append(int(formatted_expenses[i][0]))
@@ -143,7 +145,7 @@ def add_expenses():
                 print("Enter a number or \"back\"")
                 pass
 
-# Lists all expenses
+# Outputs All Expenses
 def view_expenses():
     with open("expenses.csv") as x:
         expenses_file = csv.reader(x, delimiter=',')
@@ -165,6 +167,7 @@ def view_expenses():
             else:
                 print(f"{i+1}. {expenses[i]} - ${amounts[i]}")
 
+# Calculates and Outputs Sum of all Expenses
 def calculate_expenses():
     total = 0
     # Separates expenses file into expenses and amounts
@@ -194,6 +197,7 @@ def exit_program():
 
 display_menu()
 
+# Main Application Loop
 while True:
 
     choice = input("Please choose an option (1 - 3), \"menu\", or \"exit\": ")
