@@ -8,10 +8,11 @@ def clear_screen():
 # Displays Main Menu
 def display_menu():
     print("Welcome to the Simple expenses Tracker\n")
-    print("1. Manage expenses")
-    print("2. View expenses")
-    print("3. Calculate Total expenses")
-    print("\"Menu\" to bring up menu")
+    print("1. Manage Expenses")
+    print("2. View Expenses")
+    print("3. Calculate Total Expenses")
+    print("4. Remove Expense")
+    print("\"Menu\" to display menu")
     print("\"Exit\" to exit\n")
 
 # Adds/Updates Expenses in expenses.csv
@@ -150,10 +151,6 @@ def add_expenses():
                 clear_screen()
                 print("Enter a number or \"back\"")
                 pass
-
-# Removes Expense from expenses.csv
-def remove_expense():
-    pass
 
 # Outputs All Expenses
 def view_expenses():
