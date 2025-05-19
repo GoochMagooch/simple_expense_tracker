@@ -11,7 +11,6 @@ def display_menu():
     print("1. Manage Expenses")
     print("2. View Expenses")
     print("3. Calculate Total Expenses")
-    print("4. Remove Expense")
     print("\"Menu\" to display menu")
     print("\"Exit\" to exit\n")
 
@@ -59,6 +58,7 @@ def add_expenses():
                 print(f"Choose 1 - {len(expenses)} to update expense amount")
                 for i in formatted_expenses:
                     print(f"  {i}")
+        print("Enter \"Remove\" to remove expense")
         print("Enter \"Back\" to go back")
         
         exp_choice_int = input("Choose: ")
@@ -66,7 +66,6 @@ def add_expenses():
         # If user chooses "back"
         if exp_choice_int.lower() == "back":
             clear_screen()
-            display_menu()
             break
 
         # If user chooses "add"
@@ -92,6 +91,7 @@ def add_expenses():
                     print(f"Current Expenses:")
                     for i in formatted_expenses:
                         print(f"  {i}")
+                    print("Enter \"Remove\" to remove expense")
                     print("Enter \"Back\" to go back")
                 my_expenses = input("Enter your expense: ")
                 if my_expenses.lower() == "back":
@@ -113,6 +113,68 @@ def add_expenses():
                             break
                         except ValueError:
                             print("test")
+
+        # If user chooses "remove"
+        elif exp_choice_int.lower() == "remove":
+            while True:
+                # If there are no logged expenses
+                if len(expenses) == 0:
+                    clear_screen()
+                    print("No expenses to remove! Add some!\n")
+                    break
+
+                # If there is one logged expense
+                elif len(expenses) == 1:
+                    clear_screen()
+                    print("REMOVE EXPENSES HERE!\n")
+                    print(f"Choose 1 to remove expense")
+                    for i in formatted_expenses:
+                        print(f"  {i}")
+
+                # If there are multiple logged expenses
+                else:
+                    clear_screen()
+                    print("REMOVE EXPENSES HERE!\n")
+                    print(f"Current Expenses:")
+                    for i in formatted_expenses:
+                        print(f"  {i}")
+                    print("Enter \"Back\" to go back")
+                remove_exp = input("Expense to remove: ")
+                if remove_exp.lower() == "back":
+                    clear_screen()
+                    break
+                else:
+                    try:
+                        remove_conf_int = int(remove_exp)
+                        if remove_conf_int in num_list:
+                            print("Are you sure you want to remove this expense?")
+                            confirm_removal = input("Enter \"Y\" or \"N\": ")
+                            if confirm_removal.lower() == "y":
+                                    # Remove Expense Logic
+                                    clear_screen()
+                                    exp_ph = ""
+                                    amo_ph = ""
+                                    for i in range(len(formatted_expenses)):
+                                        if remove_conf_int == int(formatted_expenses[i][0]):
+                                            exp_ph = expenses[i]
+                                            amo_ph = amounts[i]
+                                    expenses.remove(exp_ph)
+                                    amounts.remove(amo_ph)
+                                    open("expenses.csv", "w").close()
+                                    for i in range(len(expenses)):
+                                        with open("expenses.csv", "a", newline="") as x:
+                                            expenses_file = csv.writer(x)
+                                            expenses_file.writerow([expenses[i], amounts[i]])
+                                    break
+                            else:
+                                clear_screen()
+                                break
+                        else:
+                            print("Invalid selection")
+                            pass
+                    except ValueError:
+                        pass
+                        print("test")      
         else:
             try:
                 int_choice = int(exp_choice_int)
@@ -128,6 +190,7 @@ def add_expenses():
                         print(f"Choose 1 - {len(expenses)} to update expense amount")
                         for i in formatted_expenses:
                             print(f"  {i}")
+                    print("Enter \"Remove\" to remove an expense")
                     print("Enter \"Back\" to go back")
                     for i in range(len(num_list)):
                         if num_list[i] == int_choice:
@@ -154,25 +217,26 @@ def add_expenses():
 
 # Outputs All Expenses
 def view_expenses():
-    with open("expenses.csv") as x:
-        expenses_file = csv.reader(x, delimiter=',')
-        expenses = []
-        amounts = []
-        for i in expenses_file:
-            expenses.append(i[0])
-            amounts.append(float(i[1]))
-    
     if os.path.getsize("expenses.csv") == 0:
         clear_screen()
-        print("No logged expenses! Add some by choosing option 1!\n")
+        print("No logged expenses! Add some!\n")
+        pass
     else:
-        for i in range(len(expenses)):
-            if len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 1 and str(amounts[i])[str(amounts[i]).index(".")+1:] == "0":
-                print(f"{i+1}. {expenses[i]} - ${amounts[i]:.2f}")
-            elif len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 1:
-                print(f"{i+1}. {expenses[i]} - ${amounts[i]:.2f}")
-            else:
-                print(f"{i+1}. {expenses[i]} - ${amounts[i]}")
+        with open("expenses.csv") as x:
+            expenses_file = csv.reader(x, delimiter=',')
+            expenses = []
+            amounts = []
+            for i in expenses_file:
+                expenses.append(i[0])
+                amounts.append(float(i[1]))
+
+            for i in range(len(expenses)):
+                if len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 1 and str(amounts[i])[str(amounts[i]).index(".")+1:] == "0":
+                    print(f"{i+1}. {expenses[i]} - ${amounts[i]:.2f}")
+                elif len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 1:
+                    print(f"{i+1}. {expenses[i]} - ${amounts[i]:.2f}")
+                else:
+                    print(f"{i+1}. {expenses[i]} - ${amounts[i]}")
 
 # Calculates and Outputs Sum of all Expenses
 def calculate_expenses():
@@ -202,11 +266,9 @@ def exit_program():
     print("Exiting expenses Tracker...Goodbye")
     exit()
 
-display_menu()
-
 # Main Application Loop
 while True:
-
+    display_menu()
     choice = input("Please choose an option (1 - 3), \"menu\", or \"exit\": ")
 
     if choice.lower() == "exit":
@@ -230,10 +292,8 @@ while True:
             else:
                 clear_screen()
                 print("Choice not found...")
-                display_menu()
                 pass
         except ValueError:
             clear_screen()
             print("Choice not found...")
-            display_menu()
             pass
