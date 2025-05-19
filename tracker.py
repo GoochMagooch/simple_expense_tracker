@@ -5,7 +5,8 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def display_menu():
-    print("1. Add an expenses")
+    print("Welcome to the Simple expenses Tracker\n")
+    print("1. Manage expenses")
     print("2. View expenses")
     print("3. Calculate Total expenses")
     print("\"Menu\" to bring up menu")
@@ -13,57 +14,86 @@ def display_menu():
 
 # Adds/updates expenses in expenses.csv
 def add_expenses():
-    # Separates expenses file into expenses and amounts
-    with open("expenses.csv") as x:
-        expenses_file = csv.reader(x, delimiter=',')
-        expenses = []
-        amounts = []
-        for i in expenses_file:
-            expenses.append(i[0])
-            amounts.append(float(i[1]))
-
-    # Defines list of formatted expensess
-    formatted_expenses = []
-    for i in range(len(expenses)):
-        if len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 1 and str(amounts[i])[str(amounts[i]).index(".")+1:] == "0":
-            formatted_expenses.append(f"{i+1}. {expenses[i]} - ${amounts[i]:.2f}")
-        elif len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 1:
-            formatted_expenses.append(f"{i+1}. {expenses[i]} - ${amounts[i]:.2f}")
-        elif len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 2:
-            formatted_expenses.append(f"{i+1}. {expenses[i]} - ${amounts[i]}")
-
-    # Holds numbers to match with user input to update expenses
-    num_list = []
-    for i in range(len(formatted_expenses)):
-        num_list.append(int(formatted_expenses[i][0]))
-
+    clear_screen()
     # Adds/updates expenses
     while True:
-        clear_screen()
+
+        # Separates expenses file into expenses and amounts
+        with open("expenses.csv") as x:
+            expenses_file = csv.reader(x, delimiter=',')
+            expenses = []
+            amounts = []
+            for i in expenses_file:
+                expenses.append(i[0])
+                amounts.append(float(i[1]))
+
+        # Defines list of formatted expensess
+        formatted_expenses = []
+        for i in range(len(expenses)):
+            if len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 1 and str(amounts[i])[str(amounts[i]).index(".")+1:] == "0":
+                formatted_expenses.append(f"{i+1}. {expenses[i]} - ${amounts[i]:.2f}")
+            elif len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 1:
+                formatted_expenses.append(f"{i+1}. {expenses[i]} - ${amounts[i]:.2f}")
+            elif len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 2:
+                formatted_expenses.append(f"{i+1}. {expenses[i]} - ${amounts[i]}")
+
+        # Holds numbers to match with user input to update expenses
+        num_list = []
+        for i in range(len(formatted_expenses)):
+            num_list.append(int(formatted_expenses[i][0]))
+
+        # Main add_expense menu
+        print("Welcome to the Expense Management Console!\n")
         if len(expenses) == 0:
-            print("No logged expenses! Add some!")
-            print("Enter \"Add\" - Add new expense")
+            print("No logged expenses! Add some by entering \"Add\"!")
         else:
-            print("Enter \"Add\" - Add new expense")
+            print("Enter \"Add\" to add new expense")
             if len(expenses) == 1:
-                print(f"Enter 1 to update {expenses[0]} expense")
-            else:
-                print(f"Enter 1 - {len(expenses)} to update expense amount")
+                print(f"Choose 1 to update expense amount")
                 for i in formatted_expenses:
                     print(f"  {i}")
-        print("Enter \"Back\" - Go back")
+            else:
+                print(f"Choose 1 - {len(expenses)} to update expense amount")
+                for i in formatted_expenses:
+                    print(f"  {i}")
+        print("Enter \"Back\" to go back")
+        
         exp_choice_int = input("Choose: ")
+
+        # If user chooses "back"
         if exp_choice_int.lower() == "back":
             clear_screen()
             display_menu()
             break
-        elif exp_choice_int == "add":
+
+        # If user chooses "add"
+        elif exp_choice_int.lower() == "add":
             while True:
-                my_expenses = input("Describe your expense or enter \"back\": ")
+                # If there are no logged expenses
+                if len(expenses) == 0:
+                    clear_screen()
+                    print("ADD NEW EXPENSES HERE!\n")
+                # If there is one logged expense
+                elif len(expenses) == 1:
+                    clear_screen()
+                    print("ADD NEW EXPENSES HERE!\n")
+                    print(f"Choose 1 to update expense amount")
+                    for i in formatted_expenses:
+                        print(f"  {i}")
+                # If there are multiple logged expenses
+                else:
+                    clear_screen()
+                    print("ADD NEW EXPENSES HERE!\n")
+                    print(f"Current Expenses:")
+                    for i in formatted_expenses:
+                        print(f"  {i}")
+                    print("Enter \"Back\" to go back")
+                my_expenses = input("Enter your expense: ")
                 if my_expenses.lower() == "back":
+                    clear_screen()
                     break
                 else:
-                    ex_amount = input("Enter expense amount or enter \"back\": ")
+                    ex_amount = input("Enter amount: ")
                     if ex_amount.lower() == "back":
                         clear_screen()
                         pass
@@ -77,9 +107,22 @@ def add_expenses():
         else:
             try:
                 int_choice = int(exp_choice_int)
-                # add conditional for "back"
                 if int_choice in num_list:
-                    ex_amount = float(input("Enter the price of your expenses: "))
+                    clear_screen()
+                    print("Welcome to the Expense Management Console!\n")
+                    print("Enter \"Add\" to add new expense")
+                    if len(expenses) == 1:
+                        print(f"Choose 1 to update expense amount")
+                        for i in formatted_expenses:
+                            print(f"  {i}")
+                    else:
+                        print(f"Choose 1 - {len(expenses)} to update expense amount")
+                        for i in formatted_expenses:
+                            print(f"  {i}")
+                    print("Enter \"Back\" to go back")
+                    for i in range(len(num_list)):
+                        if num_list[i] == int_choice:
+                            ex_amount = float(input(f"Enter the price of your {expenses[i]} expense: "))
                     for i in range(len(expenses)):
                         if int_choice == num_list[i]:
                             amounts[i] = amounts[i] + ex_amount
@@ -93,7 +136,7 @@ def add_expenses():
                     break
                 else:
                     clear_screen()
-                    print("Enter a number or \"back\"")
+                    print("Enter a valid expense number or \"back\"")
                     pass
             except ValueError:
                 clear_screen()
@@ -149,7 +192,6 @@ def exit_program():
     print("Exiting expenses Tracker...Goodbye")
     exit()
 
-print("Welcome to the Simple expenses Tracker\n")
 display_menu()
 
 while True:
