@@ -1,6 +1,10 @@
 import os
 import csv
 
+# START DATE: AUGUST 18, 2024
+# COMPLETION DATE: MAY 21, 2025
+# HAPPY CODING! :)
+
 # FUNCTION 1: CLEARS THE TERMINAL
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
