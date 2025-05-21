@@ -71,7 +71,7 @@ Requirements
     - Do not prompt the user for file paths ✅
     - Print a confirmation when data is loaded or saved ✅
     - Don’t crash if the file doesn’t exist — start with an empty tracker ✅
-    - Handle duplicates
+    - Handle duplicates ✅
 
 5. Touch up
     - Add remove expense option ✅
