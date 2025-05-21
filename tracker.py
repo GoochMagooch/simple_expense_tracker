@@ -1,11 +1,11 @@
 import os
 import csv
 
-# Clears Terminal
+# FUNCTION 1: CLEARS THE TERMINAL
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-# Displays Main Menu
+# FUNCTION 2: DISPLAYS MAIN CLI INTERFACE MENU
 def display_menu():
     print("Welcome to the Simple expenses Tracker\n")
     print("1. Manage Expenses")
@@ -14,7 +14,7 @@ def display_menu():
     print("\"Menu\" to display menu")
     print("\"Exit\" to exit\n")
 
-# Adds/Updates Expenses in expenses.csv
+# FUNCTION 3: ADDS/UPDATES/REMOVES EXPENSES
 def add_expenses():
     clear_screen()
     # Adds/updates expenses
@@ -29,7 +29,7 @@ def add_expenses():
                 expenses.append(i[0].lower())
                 amounts.append(float(i[1]))
 
-        # Defines list of formatted expensess
+        # Defines list of formatted expenses
         formatted_expenses = []
         for i in range(len(expenses)):
             if len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 1 and str(amounts[i])[str(amounts[i]).index(".")+1:] == "0":
@@ -44,7 +44,7 @@ def add_expenses():
         for i in range(len(formatted_expenses)):
             num_list.append(int(formatted_expenses[i][0]))
 
-        # Main Expense Management Menu
+        # Main 'Expense Management Console' Menu
         print("Welcome to the Expense Management Console!\n")
         if len(expenses) == 0:
             print("No logged expenses! Add some by entering \"Add\"!")
@@ -219,7 +219,7 @@ def add_expenses():
                 print("Enter a number or \"back\"")
                 pass
 
-# Outputs All Expenses
+# FUNCTION 4: OUTPUTS ALL LOGGED EXPENSES
 def view_expenses():
     if os.path.getsize("expenses.csv") == 0:
         clear_screen()
@@ -242,7 +242,7 @@ def view_expenses():
                 else:
                     print(f"{i+1}. {expenses[i]} - ${amounts[i]}")
 
-# Calculates and Outputs Sum of all Expenses
+# FUNCTION 5: CALCULATES/OUTPUTS SUM OF EXPENSES
 def calculate_expenses():
     total = 0
     # Separates expenses file into expenses and amounts
@@ -266,18 +266,15 @@ def calculate_expenses():
         else:
             print(f"The total of your expensess comes out to: ${total}")
 
-def exit_program():
-    print("Exiting expenses Tracker...Goodbye")
-    exit()
-
-# Main Application Loop
+# CLI USER INTERFACE LOOP
 while True:
     display_menu()
     choice = input("Please choose an option (1 - 3), \"menu\", or \"exit\": ")
 
     if choice.lower() == "exit":
         clear_screen()
-        exit_program()
+        print("Exiting expenses Tracker...Goodbye")
+        exit()
     elif choice.lower() == "menu":
         clear_screen()
         display_menu()
