@@ -26,7 +26,7 @@ def add_expenses():
             expenses = []
             amounts = []
             for i in expenses_file:
-                expenses.append(i[0])
+                expenses.append(i[0].lower())
                 amounts.append(float(i[1]))
 
         # Defines list of formatted expensess
@@ -44,7 +44,7 @@ def add_expenses():
         for i in range(len(formatted_expenses)):
             num_list.append(int(formatted_expenses[i][0]))
 
-        # Main add_expense menu
+        # Main Expense Management Menu
         print("Welcome to the Expense Management Console!\n")
         if len(expenses) == 0:
             print("No logged expenses! Add some by entering \"Add\"!")
@@ -74,7 +74,7 @@ def add_expenses():
                 # If there are no logged expenses
                 if len(expenses) == 0:
                     clear_screen()
-                    print("ADD NEW EXPENSES HERE!\n")
+                    print("ADD YOUR FIRST EXPENSE!\n")
 
                 # If there is one logged expense
                 elif len(expenses) == 1:
@@ -94,7 +94,11 @@ def add_expenses():
                     print("Enter \"Remove\" to remove expense")
                     print("Enter \"Back\" to go back")
                 my_expenses = input("Enter your expense: ")
-                if my_expenses.lower() == "back":
+                if my_expenses.lower() in expenses:
+                    clear_screen()
+                    print("This expense already exists\n")
+                    break
+                elif my_expenses.lower() == "back":
                     clear_screen()
                     break
                 else:
