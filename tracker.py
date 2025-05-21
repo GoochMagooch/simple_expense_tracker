@@ -98,6 +98,7 @@ def add_expenses():
                     print("Enter \"Remove\" to remove expense")
                     print("Enter \"Back\" to go back")
                 my_expenses = input("Enter your expense: ")
+                # Checks for duplicates Ln 102 - 106
                 if my_expenses.lower() in expenses:
                     clear_screen()
                     print("This expense already exists\n")
@@ -112,6 +113,7 @@ def add_expenses():
                             pass
                     else:
                         try:
+                            # Converts 'ex_amount' to float and writes expense to file
                             ex_amount_float = float(ex_amount)
                             with open("expenses.csv", "a", newline="") as x:
                                 expenses_file = csv.writer(x)
@@ -182,8 +184,8 @@ def add_expenses():
                             pass
                     except ValueError:
                         pass
-                        print("test")      
         else:
+            # Update Expense (by number) Logic
             try:
                 int_choice = int(exp_choice_int)
                 if int_choice in num_list:
@@ -237,7 +239,6 @@ def view_expenses():
             for i in expenses_file:
                 expenses.append(i[0])
                 amounts.append(float(i[1]))
-
             for i in range(len(expenses)):
                 if len(str(amounts[i])[str(amounts[i]).index(".")+1:]) == 1 and str(amounts[i])[str(amounts[i]).index(".")+1:] == "0":
                     print(f"{i+1}. {expenses[i]} - ${amounts[i]:.2f}")
@@ -262,7 +263,6 @@ def calculate_expenses():
     else:
         for amount in amounts:
             total += amount
-
         if len(str(total)[str(total).index(".")+1:]) == 1 and str(total)[str(total).index(".")+1:] == "0":
             print(f"The total of your expensess comes out to: ${int(total)}")
         elif len(str(total)[str(total).index(".")+1:]) == 1:
