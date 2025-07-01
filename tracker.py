@@ -11,7 +11,7 @@ def clear_screen():
 
 # FUNCTION 2: DISPLAYS MAIN CLI INTERFACE MENU
 def display_menu():
-    print("Welcome to the Simple expenses Tracker\n")
+    print("Welcome To The Simple Expense Tracker!\n")
     print("1. Manage Expenses")
     print("2. View Expenses")
     print("3. Calculate Total Expenses")
