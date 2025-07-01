@@ -1,7 +1,4 @@
 # SIMPLE EXPENSE TRACKER
 
 ## Description
-A simple CLI Expense Tracker to log and track expenses
-
-## Description
-    - A simple CLI Expense Tracker to log and track expenses
+    A simple CLI tool to log and track expenses
