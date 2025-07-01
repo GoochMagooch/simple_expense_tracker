@@ -8,6 +8,8 @@ A simple CLI tool to log and track expenses
 ## Installation
 
 #### Linux
-```bash
-git clone https://github.com/GoochMagooch/simple_expense_tracker.git
-```
+    git clone https://github.com/GoochMagooch/simple_expense_tracker.git
+
+## How to use
+    python3 tracker.py
+![command image](images/how_to_use_expense_tracker.png)
