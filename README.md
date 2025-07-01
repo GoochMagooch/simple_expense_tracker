@@ -12,4 +12,4 @@ A simple CLI tool to log and track expenses
 
 ## Usage
     python3 tracker.py
-![command image](images/how_to_use_expense_tracker.png)
+![command image](images/expense_tracker_usage.png)
