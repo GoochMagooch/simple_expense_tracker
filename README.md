@@ -4,3 +4,11 @@
 
 ## Description
     A simple CLI tool to log and track expenses
+
+### Installation
+
+#### Linux
+```bash
+git clone https://github.com/GoochMagooch/simple_expense_tracker.git
+```
+
